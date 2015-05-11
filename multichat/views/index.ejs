@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Welcome chat</title>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+     $(document).ready(function (){
+            var socket = io.connect();
+   			socket.on('connect', function(){
+   			socket.emit('adduser', prompt("whats your name?"));
+   			//console.log("Your name");
+   			});
+   			});
+     </script>
+</head>
+<body>	
+	<form action='/users' method='post'>
+	<input type='text' name='name'><br>
+	 <input type='button' id = "datasend" value='ok'/>
+</form>
+	<div id ="users"></div>
+	<div id ="conversation"></div>
+</body>
+</html>
+
+
+socket.on('updatechat', function(username, data){
+   	$('#conversation').append('<b>' + username + ':</b>' + date + '<br>');
+   });
+  socket.on('updateusers', function(data) {
+		$('#users').empty();
+		$.each(data, function(key, value) {
+			$('#users').append('<div>' + key + '</div>');
+		});
+	});
+
+  $(function(){
+		$('#datasend').click( function() {
+			var message = $('#data').val();
+			$('#data').val('');
+			socket.emit('sendchat', message);
+		});
+
+
+
+socket.on('adduser', function(username){
+		socket.username = username;
+		usernames[username] = username;
+		socket.broadcast.emit('updatechat', 'server', username + 'has connected');
+		io.sockets.emit('updateusers', usernames);
+	}); 

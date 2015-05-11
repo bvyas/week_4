@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>Linked List</title>
+	<script type="text/javascript"></script>
+</head>
+<body>
+	<script>
+
+function DoublyLinkedList(){
+   this.head = null;//null value to the head
+}
+
+DoublyLinkedList.prototype.add = function(value){
+   var node = {//creating a new node and assigning its next to null
+   	value : value,//this node will get value of your input
+   	next: null
+   };
+   	var current;
+   	if(this.head == null){//if the head is null assign current to head
+   		this.head = node;
+   	}	else {
+   		current =  this.head;
+   		while(current.next){
+   			current = current.next;//when current becomes this head assign null value to current's next
+   		}
+   		current.next = node;
+ 	 }  
+	return node;
+	};
+
+DoublyLinkedList.prototype.remove = function(node){
+	var current, value = node.value;
+
+	if(this.head != null){
+		if(this.head == node) {
+			this.head = this.head.next;
+			node.next = null;
+			return value;
+		}
+		current = current.next;
+	}
+
+};
+	</script>
+</body>
+</html>

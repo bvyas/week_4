@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>Fundamental Part I</title>
+	<script type="text/javascript"></script>
+
+</head>
+<body>
+	<script>
+		var x = [3,5,'Dojo','rocks',{name:"Michael",title:"Sensei"}];
+		for(var i=0;i<x.length;i++)
+		{
+			console.log(typeof(x[i]), x[i]);
+		}
+		x.push(100);
+		console.log(x);		
+	</script>
+	<script>
+		var sum = 0;
+		for(var j=0; j<500; j++)
+		{
+			sum = sum + j;
+		}
+		console.log(sum);
+	</script>
+	<script>
+		var end,start;
+		start = new Date();
+		var startTime = start.getTime();
+		var mil = 0;
+		for(var z=0; z<=1000000; z++)
+		{
+			mil = mil + z;
+		}
+		end = new Date();
+		var endTime = end.getTime();
+		console.log(mil);
+		console.log(endTime-startTime);
+	</script>	
+</body>
+</html>

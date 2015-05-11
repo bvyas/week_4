@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+
+    </head>
+    <body>
+        <div id="results"></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+        function send_something_via_ajax(callback){
+            $.post('weather-app.html', function(output){
+                callback(output);
+        });
+            return null;
+           }; 
+            send_something_via_ajax(function(output){
+                console.log('output from the first call' + output);                             
+          }); 
+            send_something_via_ajax(function(output){
+                $("body").append('output from the second call');                             
+          });
+           send_something_via_ajax(function(output){
+                $("body").fadeIn('output from the third call'); 
+                $("body").fadeOut('output from the third call');                            
+          });         	
+        
+    //send_something_via_ajax(callback);
+    </script>
+    </body>
+</html>

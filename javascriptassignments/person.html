@@ -1,0 +1,79 @@
+<html>
+<head>
+	<title>Fundamentals Part II</title>
+	<script type="text/javascript"></script>
+</head>
+<body>
+	<script>
+		var person = { 
+			name: 'kruti',
+			distance_travelled: 0,
+			say_name: function(){
+				alert('Your name is' + this.name);
+			},
+			say_something: function(){
+				this.name + 'says I am cool';
+			},
+			walk: function(){
+				this.distance_travelled +=3;
+				alert( this.name +'is walking' + this.distance_travelled + 'mile');								
+			}, 
+			run: function(){
+				this.distance_travelled +=10;
+				alert(this.name +'is running' + this.distance_travelled + 'mile');
+				
+			},
+			crawl: function(){
+				this.distance_travelled +=10;
+				alert('Ishana is crawling' + this.distance_travelled + 'mile')
+			},	
+			doSomething: function(){
+				var x = ['walk', 'run', 'crawl'];
+				var y = x[Math.floor(Math.random() * x.length)];
+				if(x == 'walk')//'walk' in quote cause its a function
+				{
+					return this.walk();
+				}
+				else if(x == 'run')
+				{
+					return this.run();
+				}
+				else
+				{
+					return this.crawl();
+				}
+			},
+			fly: function(x,y)
+			{
+				var z = Math.floor(Math.random() * 10);	
+				if(z < 3)
+				{
+					alert('fly');
+					return x();
+				}
+				else
+				{
+					alert('fail to fly');
+					return y();
+				}
+			}
+		};	
+		function x(){
+			alert('Eating icecream');
+		}
+		function y(){
+			alert('Crying at home');
+		}
+		person.say_something();
+		person.walk();
+		person.run();
+		person.crawl();
+		person.doSomething();
+		person.fly(x,y);
+
+
+
+
+	</script>
+</body>
+</html>

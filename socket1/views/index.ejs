@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>socket 1</title>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+            var socket = io.connect();
+            $('button').click(function (){
+
+            // this triggers the connection event in our server!
+            
+                         socket.emit("button_clicked", {reason: "because I want to learn about sockets!"});
+                            });
+                            socket.on('server_response', function (name){
+                            console.log('The server says: ' + name.response);
+                             
+                            });
+           
+
+            // we'll write all the socket stuff after the above line!
+        })
+    
+    </script>
+</head>
+<body>
+    <button>I AM A BUTTON!</button>
+    <!-- web page goes here -->
+</body>
+</html><br>
+
+
+<body>
+ <h3>Add a User!</h3>
+ <form action='/users' method='post'>
+  Your Name: <input type='text' name='name'><br>
+  Dojo Location: <select name="Location"><br>
+    <option value = "Mountain View">Mountain View</option>
+    <option value = "Seattle">Seattle</option>
+    <option value = "New York">New York</option></select><br>
+  Favourite Language: <select name="Language">
+    <option value = "Java Script">Java Script</option>
+    <option value = "PHP">PHP</option>
+    </select><br>
+  <br>Comment(optional): <textarea rows = "5" cols="50" name='comment'></textarea><br>
+  <input type='submit' value='Submit'>
+ </form>
+</body>
+</html>

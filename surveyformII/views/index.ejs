@@ -1,0 +1,68 @@
+<html>
+<head>
+ <title>Survey form part II</title>
+ <style type="text/css">
+ .alvaro, .kruti, .ved, .riya{
+  border: 1px solid black;
+  background-color: blue;
+
+ }
+ </style>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+            var socket = io.connect();
+            //$('button').click(function (){
+              $('form').submit(function(){
+                form_data = {
+                          name:$("input[name ='name']").val(),
+                          Location:$("select[name ='Location']").val(),
+                          Language:$("select[name ='Language']").val(),
+                          Comment:$("text[name ='comment']").val()
+                           }
+                           socket.emit("posting_form", form_data);
+                            return false;
+                        });
+                   socket.on('server_response', function (form_data){
+                            console.log('Information passed is: ' + form_data.name + form_data.Location
+                              + form_data.Language + form_data.comment);
+                            $('.alvaro').html('Name :' + form_data.name),
+                            $('.kruti').html('Language :' +form_data.Language),
+                            $('.ved').html('Location :' +form_data.Location),
+                            $('.riya').html('Comment :' +form_data.comment)
+                          });
+                  // socket.on('server_response', function (updated_message){
+                    //$('.bha').html('Random Number :' + updated_message.num),
+
+                   //}
+         
+    
+                   });
+    </script>
+</head>
+
+<body>
+  <div class='alvaro'></div>
+  <div class='kruti'></div>
+  <div class='ved'></div>
+  <div class='riya'></div>
+  <div class = 'bha'></div>
+ <h3>Add a User!</h3>
+ <form action='/users' method='post'>
+  Your Name: <input type='text' name='name'><br>
+  Dojo Location: <select name="Location"><br>
+  	<option value = "Mountain View">Mountain View</option>
+  	<option value = "Seattle">Seattle</option>
+  	<option value = "New York">New York</option></select><br>
+  Favourite Language: <select name="Language">
+  	<option value = "Java Script">Java Script</option>
+  	<option value = "PHP">PHP</option>
+  	</select><br>
+  <br>Comment(optional): <textarea rows = "5" cols="50" name='comment'></textarea><br>
+  <input type='submit' value='Submit'>
+ </form>
+ 
+
+</body>
+</html>
